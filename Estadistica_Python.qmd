@@ -1,0 +1,68 @@
+---
+title: "Universidad de El Salvador\n\nFacultad Multidisciplinaria de Occidente\n\nMayra Cañas\n\nEstadistica Descriptiva con Python" 
+
+format: pdf
+editor: visual
+jupyter: python3
+---
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+# **Estadistica Descriptiva Con Python** 
+
+Se utiliza para presentar las características básicas de los datos de manera sencilla y comprensible. Esto incluye medidas como la media, mediana, moda, rango, varianza, desviación estándar, y más.
+
+### Exploracion de datos 
+
+Cargamos los paquetes a utilizar:
+
+```{python}
+#!pip install pandas
+```
+
+Cargamos la base de datos:
+
+```{python}
+import pandas as pd
+
+df = pd.read_csv(r"C:\Users\PC\Documents\clases\r\cars.csv")
+df
+```
+
+Tipos de datos:
+
+```{python}
+#tipos de datos en la base 
+df.dtypes
+```
+
+Generamos el conjunto completo de estadisticos descriptivos de la base de datos
+
+```{python}
+#Estadisticos descriptivos fundamentales 
+df.describe()
+```
+
+### Medidas de tendencia central 
+
+Las medidas de tendencia central son la media(promedio), mediana(dato central) y moda(dato que mas se repite de una serie)
+
+La media quedaria como:
+
+```{python}
+#Media utilizando siempre un dato cuantitativo 
+media = df['price_usd'].mean()
+print(media)
+```
+
+La mediana se obtiene como:
+
+```{python}
+mediana = df['price_usd'].median()
+print(mediana)
+```
+# prueba_as
