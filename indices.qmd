@@ -1,0 +1,179 @@
+---
+documentclass: article
+#title: "indices"
+format: pdf
+editor: visual
+jupyter: python3
+lang: es-ES
+---
+
+```{=tex}
+
+\begin{titlepage}
+\centering
+{\bfseries\LARGE UIVERSIDAD DE EL SALVADOR FACULTAD MULTIDISCIPLINARIA DE OCCIDENTE \par}
+\centering
+{\includegraphics[width=0.4\textwidth]{logoues.jpg}\par}
+\vspace{1cm}
+\vspace{1cm}
+{\scshape\Large Departamento de Matem\'atica \par}
+\vspace{1cm}
+{\scshape\large T\'itulo del proyecto \par}
+\vspace{1cm}
+{\itshape\Large\Huge Análisis multivariado aplicando componentes principales al caso de los desplazados \par}
+\vfill
+{\Large Autor: \par}
+{\Large Mayra Cañas y Jacquelinne Gutiérrez \par}
+\vfill
+{\Large 03 junio de 2024 \par}
+\end{titlepage}
+```
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+
+La humanidad en su evolución necesita conocer los fenómenos que están a su alrededor porque éstos afectan su desarrollo dentro de todos los ámbitos (fenómenos de tipo social, económico, tecnológico, físico, etc.). Este conocimiento se logra mediante la construcción de modelos que puedan reproducir y explicar dichos fenómenos. Por tal motivo, es necesario que los profesionales, directivos e investigadores en las distintas áreas del saber estén familiarizados con las herramientas necesarias para la construcción y adecuación de modelos. Una de las herramientas más importantes para llevar a cabo este objetivo es la estadística, y en particular, muy a menudo, la estadística multivariada.
+
+Según Peña y Dallas existen diversas definiciones acerca de las técnicas de análisis de datos multivariados, pero los dos coinciden en a conceptualizarla como "una herramienta que tiene como objetivo principal resumir grandes cantidades de datos por medio de pocos parámetros (simplificación), además busca encontrar relaciones entre:
+
+Variables de respuesta
+
+Unidades experimentales
+
+Variables de respuesta y unidades experimentales
+
+Según Peña, la mayoría de problemas que requieren la aplicación de la estadística exigen el tratamiento de muchos factores o variables y que por esto las técnicas del análisis de datos multivariados constituyen una herramienta poderosa para la toma de decisiones en las diferentes disciplinas, pues dan respuesta a necesidades palpables y plenamente identificables. Según Pérez, se puede observar que cuando existen muchas variables es posible que parte importante de la información sea redundante, en cuyo caso es necesario eliminar el exceso y dejar sólo variables que tengan representatividad dentro del conjunto. Esto se consigue con la aplicación de las técnicas multivariantes de reducción de la dimensión: análisis de componentes principales, factorial, correspondencias, escalamiento óptimo, homogeneidades, análisis conjunto.
+
+Las técnicas multivariadas más utilizadas en el análisis de datos son: análisis de componentes principales; análisis factorial; análisis de clasificación entre los que se encuentran: discriminante, regresión logística y clúster; análisis multivariado de la varianza, y análisis de variables canónicas.
+
+Con este artículo se desean integrar conocimientos teóricos y prácticos a través de la comprensión de las componentes principales, como una de las técnicas estadísticas que permiten estudiar la información que se dispone antes de entrar en el uso de los otros métodos que abordan el análisis de datos multivariados.
+
+Por ser tan amplio el tema, este artículo sólo trata del análisis de componentes principales debido a su importancia dentro del desarrollo de las diversas técnicas de análisis de datos multivariados.
+
+```{=tex}
+\section{Capítulo 1}
+\subsection{Componentes Principales}
+```
+Siguiendo a autores como Peña y Bramardi, el análisis de componentes principales (ACP) es una técnica estadística propuesta a principios del siglo XX por Hotelling (1933) quien se basó en los trabajos de Karl Pearson (1901) y en las investigaciones sobre ajustes ortogonales por mínimos cuadrados. Interpretando la definición de diversos autores, se puede decir que el ACP es una técnica estadística de análisis multivariado que permite seccionar la información contenida en un conjunto de p variables de interés en m nuevas variables independientes. Cada una explica una parte específica de la información y mediante combinación lineal de las variables originales otorgan la posibilidad de resumir la información, total en pocas componentes que reducen la dimensión del problema.
+
+La mayor aplicación del ACP está centrada en la de reducción de la dimensión del espacio de los datos, en hacer descripciones sintéticas y en simplificar el problema que se estudia.
+
+Para Peña, el ACP tiene una utilidad doble; por un lado, permite hacer representaciones de los datos originales en un espacio de dimensión pequeña y, por el otro, transformar las variables originales correladas en nuevas variables incorreladas que puedan ser interpretadas.
+
+El ACP también se emplea con frecuencia cuando se desea dividir las unidades experimentales en subgrupos de acuerdo con la similaridad de los mismos. Igualmente, es útil para transformar un conjunto de variables respuesta correlacionadas en un conjunto de componentes no correlacionados, bajo el criterio de máxima variabilidad acumulada y, por tanto, de mínima pérdida de información.
+
+Otra aplicación es el cribado, el cual permite el seguimiento sobre los componentes principales obtenidos para comprobar hipótesis establecidas en un estudio de análisis de datos multivariados y para identificar datos atípicos en el conjunto de datos.
+
+De igual manera, García y Gil afirman que el ACP es un criterio fundamental para hacer conjeturas sobre el numero de factores que se deben determinar en el análisis factorial y para probar si, en realidad, un grupo de variables p \> 2 cae dentro de un espacio de dos o tres dimensiones que permita ser observado dentro del análisis de clúster.
+
+Pérez anota que el análisis de componentes principales es en muchas ocasiones un paso previo a otros análisis, en los que se sustituye el conjunto de variables originales por las componentes obtenidas. Éste siempre debe hacerse cuando se quiera obtener modelos en los que sea necesario el uso de las variables originales como explicativas para tratar con algunos problemas presentes, como la independencia.
+
+Según Gil, en el análisis discriminante cuando se tienen menos observaciones que variables y es difícil encontrar nuevas observaciones, el ACP es útil para determinar un menor número de variables que resuma la máxima variabilidad de las originales y con las cuales se pueda construir la matriz de varianza-covarianza, de tal forma que sea invertible y permita elaborar una regla de discriminación necesaria para clasificar nuevas observaciones.
+
+Finalmente, el ACP se usa como base para determinar si ocurre multicolinealidad entre variables predictoras en el análisis de regresión múltiple. Entendiéndose como multicolinealidad cuando en dos o más variables existe redundancia; esto es, la información de una o más variables ya está explicada en otra(s) variable(s) (véase por ejemplo, Peña, Dallas).
+
+\subsection{Notaciones y Símbolos}
+
+Siguiendo la simbología común de diversos autores, a continuación se presentan conceptos básicos del álgebra de matrices que son necesarios en el ACP.
+
+\subsubsection{Matriz de variable respuesta}
+
+La base para la utilización del ACP es la estructura de correlación (interdependencia) entre las variables cuantitativas definidas en una población, en donde cada individuo queda definido en términos de las mismas. La matriz de variable respuesta de doble entrada X está compuesta por filas que representan las unidades experimentales Ir, r=1,2,....,n y las columnas, por las variables Xj, j= 1,2,...., p, como se muestra a continuación:
+
+Figura 1
+
+![](imagen1.jpg)
+
+\subsubsection{Vectores de datos}
+
+Con el fin de tener un lenguaje común en los procesos de ACP, en adelante, los vectores siempre serán columnas a o X, etc., y la transpuesta de un vector cualquiera, por ejemplo a, se simboliza por a'.
+
+\subsubsection {Vectores de medias y matrices de varianza covarianza}
+
+La media de un vector X de variables aleatorias se denota por µ, definido por:
+
+Figura 2
+
+![](images/clipboard-2329624976.png)
+
+La matriz de covarianza de *X* se denota por Σ, donde:
+
+Figura 3
+
+![](images/clipboard-139964040.png)
+
+\subsubsection {Correlación y matriz de correlación}
+
+El coeficiente de correlación entre *X~i~* y *X~j~* se denota por:
+
+Figura 4
+
+![](images/clipboard-1845937149.png)
+
+\subsubsection{**Matrices ortogonales unitarias**}
+
+Dentro del álgebra de matrices las rotaciones de un espacio vectorial son transformaciones lineales del espacio vectorial sobre sí mismo y están asociadas con matrices cuadradas, unitarias y ortogonales. Una matriz de éstas, Q, tiene tantas filas y columnas como sea la dimensión del espacio. Sus columnas son vectores unitarios (es decir, de longitud igual a la unidad) y tiene la particularidad de que al ser multiplicada por su transpuesta produce la matriz unidad. En otras palabras, *Q*^-1^ = *Q*'. En cambio, las traslaciones no son transformaciones lineales pero tienen la propiedad de no modificar la variabilidad de la nube de puntos. Es decir, las varianzas y covarianzas en la nube son las mismas antes y después de una traslación. Lo expuesto anteriormente, junto con algunas propiedades de la matriz de varianzas covarianzas Σ, constituye las bases sobre las cuales descansa la técnica de componentes principales.
+
+\section{ **PLANTEAMIENTO Y SOLUCIÓN DEL PROBLEMA DE LOS COMPONENTES PRINCIPALES**}
+
+El ACP es una técnica descriptiva; sin embargo, no niega la posibilidad de que también pueda ser utilizado con fines de inferencia. Por otra parte, las aplicaciones del ACP son numerosas y entre ellas se pueden citar la clasificación de individuos, la comparación de poblaciones, la estratificación multivariada, entre otras. En el ACP se maneja un número *p* (*p* ≥ *2*) de variables numéricas. Si cada variable se representa sobre un eje, se necesitaría un sistema de coordenadas rectangulares con p ejes perpendiculares entre sí para ubicar las coordenadas de los puntos y poderlos dibujar. Cuando *p* ≥ 4, para el ser humano es imposible hacer la representación gráfica. En estos casos el ACP permite buscar un nuevo sistema de coordenadas con origen en el centro de gravedad de la nube de puntos, de tal manera que el primer eje del nuevo sistema *F~1~* recoja la mayor cantidad posible de variación; el segundo eje *F~2~*, la mayor cantidad posible entre la variación restante; el tercer eje *F~3~* la mayor cantidad posible entre la variación que queda después de las dos anteriores y así sucesivamente. Las Figuras 5 y 6 permiten ver la representación gráfica de dos componentes.
+
+Figura 5
+
+![](images/figura%205.jpg)
+
+Figura 6
+
+![Observando las figuras anteriores se puede concluir que el sistema de coordenadas de la derecha se logra después de dos movimientos de la nube de puntos: el primer movimiento corresponde a una traslación que permite situar el nuevo origen en el centro de gravedad de la nube. El segundo movimiento que se hace sobre la nube centrada es una rotación, usando el centro de gravedad como punto pivote. La rotación permite ubicar los ejes en dirección horizontal y vertical como se observa en la [Figura](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#g2)6. Esto indica que se desea encontrar un nuevo sistema de coordenadas que represente lo mejor posible los datos sin causar distorsiones, cuya forma de problema es equivalente a encontrar las nuevas variables del espacio reducido con una mínima pérdida de la información, y también a buscar un elipsoide de concentración que permita encerrar los datos originales.](images/figura%206.jpg)
+
+Cuando ya se ha definido el problema es factible abordarlo. Según Peña \[[1](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#1)\], páginas 73-74, la matriz de varianza covarianza Σ es definida positiva, es decir, la forma cuadrática asociada a ella tiene todas sus raíces positivas. Lo anterior hace que esta matriz tenga p valores propios reales y diferentes, lo cual garantiza que sea diagonalizable. En términos matemáticos significa que existe una matriz *A* ortogonal, tal que Σ = *ADA^-1^* donde *D* es la matriz diagonal formada por los valores propios de Σ, denotados por λ~1~, λ~2~,..., λ~*p*~. Es posible reordenar de acuerdo con su magnitud los valores propios de Σ de tal manera que λ~1~ \> λ~2~ \>...\> λ~*p*~. Esto simplemente se traduce en un reordenamiento de las columnas de la matriz A de manera que la primera sea el vector propio o componente asociado con λ1, la segunda sea un vector propio asociado con λ2 y así sucesivamente. En particular, dichas columnas pueden estar formadas por vectores propios normalizados, es decir, perpendiculares entre sí y de longitud igual a la unidad. De esta manera se construye una matriz que produce la rotación deseada ya que, como puede probarse, el primer vector propio ![](http://www.scielo.org.co/img/revistas/inde/n23/1a10e6.jpg) apunta en la dirección de máxima variabilidad de la nube centrada. Esta dirección se llama primera dirección principal. El segundo vector propio ![](http://www.scielo.org.co/img/revistas/inde/n23/1a10e7.jpg) apunta en la siguiente dirección de máxima variabilidad de la nube centrada, llamada segunda dirección principal y así sucesivamente.
+
+Una vez resuelto el problema de la rotación, bastará multiplicar la vac c c riable centrada *Xc = X - µ = ( X~1~ , X~2~ ,..., X~p~ )* por la matriz de rotación A para obtener la nueva variable, *Y = (Y~1~, Y~2~ ,... Y~p~ )* llamada variable de componentes principales. Cada componente *Y~i~* del vector aleatorio *Y* se llama una componente principal. Evidentemente se cumple que *Y~j~ = a~j1~ X~c~ + a~j2~ X~c2~ ,..., + a~jp~ X~cp~* , es decir, cada componente principal es 1 una combinación lineal de las variables originales centradas. Para hacer el análisis de los autovalores se necesita desarrollar los conceptos y las propiedades que se verifican. La traza de Σ, por ser la suma de las varianzas de las variables originales *Y~i~* recibe el nombre de varianza total, resulta claro que *traza(Σ) = traza (ADA^-1^) = Σ λ~i~*. Se puede probar además que *V(Y~i~ ) = λ~i~* para *i* = 1,2..., *p* y que *Cov(Y~i~ , Y~j~) = 0*, con *i â  j*. Esto implica varios aspectos, a saber: La varianza total es igual a la suma de los valores propios de *λ~i~* e igual a la suma de las varianzas de las componentes principales. Es decir, la varianza total es la misma con las variables originales que con las variables transformadas *Y~i~*. Las componentes principales son variables aleatorias no correlacionadas entre sí, obtenidas mediante la transformación lineal del vector de las variables originales centradas por la matriz de autovectores.
+
+\section{**UN CASO DE APLICACIÓN DEL ANÁLISIS DE COMPONENTES PRINCIPALES**}
+
+\subsection{**Descripción del problema**}
+
+Según la ley 387 de 1997, "Es desplazado toda persona que se ha visto forzada a migrar dentro del territorio nacional abandonando su localidad de residencia o actividades económicas habituales, porque su vida, su integridad física, su seguridad o libertad personales han sido vulneradas o se encuentran directamente amenazadas, con ocasión de cualquiera de las siguientes situaciones: Conflicto armado interno, disturbios y tensiones interiores, violencia generalizada, violaciones masivas de los Derechos Humanos, infracciones al Derecho Internacional Humanitario u otras circunstancias emanadas de las situaciones anteriores que puedan alterar o alteren drásticamente el orden público"^[2](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#nap2)^.
+
+Nuestro problema está basado en la lectura de la situación de los desplazados en un municipio de Colombia, donde se concentran el mayor porcentaje de estas personas que huyen de la violencia y el temor que generan las fuerzas oscuras en los campos del país.
+
+Mediante entrevistas a expertos, a los mismos desplazados y la observación directa, se ha podido determinar problemas de diferente índole, tales como: la ubicación desordenada de los desplazados que han incomodado hasta llegar a roces con el personal que habita en los diferentes barrios, hacinamiento, inseguridad, y otros problemas de orden público.
+
+Para analizar más profundamente esta problemática, los investigadores han recopilado información de fuentes (como, por ejemplo, el ministerio de Protección Social, el Sistema de Información de Hogares Desplazados por Violencia en Colombia - SISDES; el boletín sobre "Niños desplazados" editado por Codhes el 25 de octubre de 1997, entre otros) relativa a la población desplazada, con el propósito de contribuir desde la academia a ver técnicamente el problema con la ayuda del análisis de componentes principales.
+
+Los datos de la [Tabla 1](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#t1) corresponden a la investigación exploratoria y estimaciones realizadas por los autores con el fin de encontrar los niveles de incidencia de los factores que conforman el problema de los desplazados en la comunidad.
+
+Lo anterior se consigue mediante ACP, con lo cual se obtienen resultados útiles para ver más claro la gravedad del problema (véase resultados finales en esta sección). Para este estudio se han definido las variables que a continuación se nombran en los 25 lugares donde se ubican los desplazados: HPM: Horas promedio de movilidad diaria; NPM: Número promedio de desplazados por mes; NHS: Número de horas semanales que los centros de alimentación están en funcionamiento; ATR: Área total de recreación de uso común (en metros cuadrados); NBC: Número de centros del lugar de posible concentración; CCD: Cantidad de camas disponibles; NTC: Número total de cuartos; HHM: Horas-hombre mensual requeridas para atenderlos.
+
+Tabla 1
+
+![](images/tabla%201.jpg)
+
+Estos datos fueron procesados con SPSS y *Statgraphics* y se obtuvieron los resultados que aparecen a continuación, para sacar algunas conclusiones que sirven para consolidar el estudio sobre el ACP.
+
+\subsection{**Estadísticos descriptivos**}
+
+Tabla 2
+
+![](images/tabla%202.jpg)
+
+En la [Tabla 2](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#t2) se muestran la media, la desviación y el coeficiente de variación para cada una de las variables (análisis univariante). Estos valores permiten estimar la variable centrada tipificada Z (compárese con la [Tabla 7](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0122-34612008000100010#t7)). El objetivo de esta tipificación es homogenizar las unidades de medidas, buscando que todas pesen por igual en el análisis como se dijo anteriormente.
+
+\subsection{**Matriz de correlaciones y prueba de independencia**}
+
+Tabla 3
+
+![](images/tabla%203.jpg)
+
+Determinante=0,000469886
+
+El tener determinante bajo y coeficiente de correlaciones relativamente altas entre las variables originales es un buen indicador para utilizar la técnica de componentes principales que ayuda a resumir las variables en pocas dimensiones cuando se hace este tipo de análisis. Esto se debe a que las correlaciones altas implican dependencia lineal entre las variables, dando lugar a que se puedan explicar con un número menor de variables llamadas componentes principales Yi . Todo lo anterior, y suponiendo normalidad de los datos, se puede corroborar con la prueba de independencia que se muestra en la siguiente tabla (p-valor=0 es menor que 0,05 y KMO es próximo a 1):
+
+Tabla 4
+
+![](images/tabla%204.jpg)
